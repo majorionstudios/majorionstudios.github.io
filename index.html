@@ -3,47 +3,163 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Majorion Studios</title>
-<meta name="description" content="Majorion Studios, makers of Guardians of the Mist.">
+<title>Guardians of the Mist</title>
+<meta name="description" content="Guardians of the Mist: a family-friendly voxel action RPG for Android by Majorion Studios. Four classes, five campaigns, 50 boss stages, the Forge and the Lighthouse.">
+<meta property="og:title" content="Guardians of the Mist">
+<meta property="og:description" content="A voxel action RPG for Android: four heroes, five campaigns, 50 boss stages.">
+<meta property="og:image" content="https://majorionstudios.github.io/img/share.jpg">
+<meta property="og:type" content="website">
+<link rel="icon" href="img/icon.png">
 <style>
-  :root { --bg: #fbf8f2; --text: #1f2430; --muted: #5b6070; --line: #e3dccd; --accent: #8a5a12; --card: #ffffff; }
-  @media (prefers-color-scheme: dark) {
-    :root { --bg: #161a22; --text: #ece6d8; --muted: #a9a698; --line: #2c3240; --accent: #e2b264; --card: #1d222c; }
-  }
+  @font-face { font-family: "Cinzel"; src: url("fonts/cinzel.woff") format("woff");
+    font-weight: 400 900; font-display: swap; }
+  :root { --bg: #10131b; --bg2: #171c27; --text: #ece6d8; --muted: #a9a698; --line: #2c3240;
+    --gold: #f6cf62; --gold2: #e2b264; --card: #1b202c; }
   * { box-sizing: border-box; }
   html { -webkit-text-size-adjust: 100%; }
   body { margin: 0; background: var(--bg); color: var(--text);
     font: 17px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }
-  main { max-width: 720px; margin: 0 auto; padding: 48px 16px 64px; }
-  h1 { font-size: 2rem; margin: 0 0 4px; }
-  .tag { color: var(--muted); margin: 0 0 32px; }
-  .card { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 16px 20px; }
-  .card h2 { font-size: 1.25rem; margin: 0 0 6px; }
-  .card p { margin: 0 0 12px; }
-  a { color: var(--accent); }
-  ul { list-style: none; padding: 0; margin: 0; }
-  li { margin: 6px 0; }
-  footer { margin-top: 48px; color: var(--muted); font-size: 0.9rem; }
+  a { color: var(--gold2); }
+  img { display: block; max-width: 100%; height: auto; }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 16px; }
+  h1, h2, h3, .brand { font-family: "Cinzel", Georgia, serif; font-weight: 700; letter-spacing: 0.02em; }
+
+  .top { display: flex; align-items: center; gap: 10px; padding: 14px 0; }
+  .top img { width: 36px; height: 36px; border-radius: 8px; }
+  .brand { color: var(--gold); font-size: 1.05rem; text-decoration: none; }
+  .top nav { margin-left: auto; font-size: 0.92rem; }
+  .top nav a { color: var(--muted); text-decoration: none; margin-left: 16px; }
+  .top nav a:hover { color: var(--text); }
+
+  .hero { position: relative; border-radius: 14px; overflow: hidden; border: 2px solid #5c3812;
+    box-shadow: 0 0 0 2px #ffe08a33, 0 18px 50px #0009; }
+  .hero-text { text-align: center; padding: 28px 0 8px; }
+  .hero-text h1 { color: var(--gold); font-size: clamp(2rem, 6vw, 3.4rem); line-height: 1.1; margin: 0 0 10px;
+    text-shadow: 0 3px 0 #24120488; }
+  .hero-text p { color: var(--muted); font-size: 1.1rem; margin: 0 auto 18px; max-width: 620px; }
+  .badge { display: inline-block; border: 1px solid #5c3812; background: #241a0e; color: var(--gold);
+    border-radius: 999px; padding: 8px 18px; font-weight: 600; }
+
+  section { padding: 40px 0 8px; }
+  section > h2 { color: var(--gold); text-align: center; font-size: clamp(1.4rem, 4vw, 2rem); margin: 0 0 22px; }
+  .story { max-width: 720px; margin: 0 auto; text-align: center; color: var(--text); font-size: 1.08rem; }
+
+  .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; }
+  .feature { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px; }
+  .feature h3 { color: var(--gold); font-size: 1.02rem; margin: 0 0 6px; }
+  .feature p { margin: 0; color: var(--muted); font-size: 0.97rem; }
+
+  .classes { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
+  .class { background: var(--bg2); border-left: 3px solid var(--gold2); border-radius: 8px; padding: 12px 16px; }
+  .class strong { font-family: "Cinzel", Georgia, serif; color: var(--text); }
+  .class p { margin: 4px 0 0; color: var(--muted); font-size: 0.95rem; }
+
+  .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: 16px; }
+  .gallery figure { margin: 0; }
+  .gallery a { display: block; border-radius: 10px; overflow: hidden; border: 1px solid #5c3812; }
+  .gallery img { transition: transform 0.25s; }
+  .gallery a:hover img { transform: scale(1.03); }
+  .gallery figcaption { text-align: center; color: var(--muted); font-size: 0.93rem; margin-top: 6px; }
+
+  .fair { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 18px 22px;
+    max-width: 760px; margin: 0 auto; }
+  .fair ul { margin: 0; padding-left: 1.2em; }
+  .fair li { margin: 6px 0; }
+
+  footer { margin-top: 56px; border-top: 1px solid var(--line); padding: 24px 0 40px; color: var(--muted);
+    font-size: 0.92rem; text-align: center; }
+  footer a { margin: 0 8px; }
+  footer p { margin: 6px 0; }
+  @media (max-width: 520px) { .top nav a { margin-left: 10px; } .brand { font-size: 0.95rem; } }
 </style>
 </head>
 <body>
-<main>
-  <h1>Majorion Studios</h1>
-  <p class="tag">Small independent games, made with care.</p>
+<div class="wrap">
+  <header class="top">
+    <img src="img/icon.png" alt="" width="36" height="36">
+    <a class="brand" href="./">Majorion Studios</a>
+    <nav><a href="#screens">Screens</a><a href="privacy.html">Privacy</a></nav>
+  </header>
 
-  <div class="card">
-    <h2>Guardians of the Mist</h2>
-    <p>A family-friendly action RPG for Android: lead your heroes through the mist, from the swamps to the
-      Skyward Isles.</p>
-    <ul>
-      <li><a href="privacy.html">Privacy policy</a></li>
-      <li><a href="delete-account.html">Delete your account</a></li>
-    </ul>
+  <div class="hero">
+    <img src="img/hero.jpg" width="1600" height="701"
+         alt="The four heroes of Guardians of the Mist: Vanguard, Lancer, Mistcaller and Bonebinder">
   </div>
 
+  <div class="hero-text">
+    <h1>Guardians of the Mist</h1>
+    <p>A family-friendly action RPG for Android, set in a blocky voxel world above a sea of mist.</p>
+    <span class="badge">Coming soon to Google Play</span>
+  </div>
+
+  <section>
+    <h2>The lights are going out</h2>
+    <p class="story">Our world floats on a sea of mist. Take up the last lantern, choose your hero and fight
+      through the fog to bring your little sister Mira home. Move with your left thumb, attack and cast with
+      your right, roll out of a boss's swing and grab the loot it drops. Each map takes a few minutes and ends
+      with a boss.</p>
+  </section>
+
+  <section>
+    <h2>What's inside</h2>
+    <div class="features">
+      <div class="feature"><h3>Five campaigns, 50 stages</h3>
+        <p>Drowned marshes, red canyons, frozen walls, floating temples and lava fields. Every stage ends with a
+          boss, then Veteran, Nightmare and Nightmare+ tiers.</p></div>
+      <div class="feature"><h3>The Forge</h3>
+        <p>Gear in six rarities, Common to Mythic. Craft, fuse three into one, upgrade to +10 and reroll a stat.</p></div>
+      <div class="feature"><h3>The Lighthouse</h3>
+        <p>Climb 100 floors each month, a boss on every 10th, then take on Hard mode.</p></div>
+      <div class="feature"><h3>Come back each day</h3>
+        <p>Three daily contracts, a bonus chest and a 28-day calendar that waits for you and never resets.</p></div>
+      <div class="feature"><h3>Your look</h3>
+        <p>Capes, wings and class outfits. Looks only: no stats, and never sold by chance.</p></div>
+      <div class="feature"><h3>Play offline</h3>
+        <p>Campaigns, the Forge, the Lighthouse and daily rewards work without a connection. Online, your
+          progress is saved to the cloud.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Four heroes</h2>
+    <div class="classes">
+      <div class="class"><strong>Vanguard</strong><p>Sword and shield: charges and whirlwinds on the front line.</p></div>
+      <div class="class"><strong>Lancer</strong><p>Spear and javelins, traps, decoys and a hawk.</p></div>
+      <div class="class"><strong>Mistcaller</strong><p>Orbs, lightning and ice from a safe distance.</p></div>
+      <div class="class"><strong>Bonebinder</strong><p>Raises skeletons and a peat shambler to fight at your side.</p></div>
+    </div>
+  </section>
+
+  <section id="screens">
+    <h2>Screenshots</h2>
+    <div class="gallery">
+      <figure><a href="img/boss.jpg"><img src="img/boss.jpg" width="1280" height="720" loading="lazy" alt="The Lancer fights the boss Mother Sedge"></a><figcaption>Battle giant bosses</figcaption></figure>
+      <figure><a href="img/combat.jpg"><img src="img/combat.jpg" width="1280" height="720" loading="lazy" alt="A hero fights a pack of enemies on a snowy road"></a><figcaption>Fight through the mist</figcaption></figure>
+      <figure><a href="img/loot.jpg"><img src="img/loot.jpg" width="1280" height="720" loading="lazy" alt="Rewards screen after a map"></a><figcaption>Loot after every map</figcaption></figure>
+      <figure><a href="img/forge.jpg"><img src="img/forge.jpg" width="1280" height="720" loading="lazy" alt="The Forge screen"></a><figcaption>Craft, fuse and upgrade gear</figcaption></figure>
+      <figure><a href="img/lighthouse.jpg"><img src="img/lighthouse.jpg" width="1280" height="720" loading="lazy" alt="A Lighthouse floor full of enemies"></a><figcaption>Climb the Lighthouse, 100 floors</figcaption></figure>
+      <figure><a href="img/campaign.jpg"><img src="img/campaign.jpg" width="1280" height="720" loading="lazy" alt="Campaign map"></a><figcaption>Five campaigns, 50 stages</figcaption></figure>
+      <figure><a href="img/style.jpg"><img src="img/style.jpg" width="1280" height="720" loading="lazy" alt="Capes and outfits"></a><figcaption>Capes and outfits, looks only</figcaption></figure>
+      <figure><a href="img/board.jpg"><img src="img/board.jpg" width="1280" height="720" loading="lazy" alt="Daily contracts board"></a><figcaption>Daily contracts and rewards</figcaption></figure>
+    </div>
+  </section>
+
+  <section>
+    <h2>Fair play</h2>
+    <div class="fair">
+      <ul>
+        <li>Free to play.</li>
+        <li>Ads are optional: you choose to watch one for a reward, up to 5 a day. No ad ever interrupts a map.</li>
+        <li>No paid random items. Gear comes from play and the Forge, and drop odds are shown in the game.</li>
+        <li>No chat and no personal details needed. Read the <a href="privacy.html">privacy policy</a>.</li>
+      </ul>
+    </div>
+  </section>
+
   <footer>
-    <p>Contact: <a href="mailto:majorionstudios@gmail.com">majorionstudios@gmail.com</a></p>
+    <p><a href="privacy.html">Privacy policy</a>·<a href="delete-account.html">Delete your account</a>·<a href="mailto:majorionstudios@gmail.com">Contact</a></p>
+    <p>&copy; 2026 Majorion Studios</p>
   </footer>
-</main>
+</div>
 </body>
 </html>
